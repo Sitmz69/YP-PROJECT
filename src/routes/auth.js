@@ -1,11 +1,13 @@
 const express = require('express');
-  const {
-    name,
-    email,
-    password,
-    age,
-    gender
-  } = req.body;
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const db = require('../config/db');
+const passport = require('passport');
+
+const router = express.Router();
+
+router.post('/register', async (req, res) => {
+  const { name, email, password, age, gender } = req.body;
 
   const hash = await bcrypt.hash(password, 10);
 
@@ -22,8 +24,7 @@ const express = require('express');
       });
     }
   );
-
-
+});
 router.post('/login', (req, res) => {
 
   const { email, password } = req.body;
