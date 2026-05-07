@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkYou - Найди свою любовь</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>LinkYou</span>
+            </div>
+            <nav id="main-nav">
+                <a href="#home" class="nav-link active">Главная</a>
+            </nav>
+            <div id="auth-buttons">
+                <button class="btn btn-outline" onclick="showLogin()">Вход</button>
+                <button class="btn btn-primary" onclick="showRegister()">Регистрация</button>
+            </div>
+            <div id="user-menu" style="display: none;">
+                <div class="user-avatar" onclick="toggleUserDropdown()">
+                    <img id="user-avatar-img" src="" alt="Avatar">
+                </div>
+                <div id="user-dropdown" class="dropdown">
+                    <a href="#profile" onclick="showSection('profile')"><i class="fas fa-user"></i> Анкета</a>
+                    <a href="#search" onclick="showSection('search')"><i class="fas fa-search"></i> Поиск</a>
+                    <a href="#chat" onclick="showSection('chat')"><i class="fas fa-comments"></i> Чат</a>
+                    <a href="#admin" onclick="showSection('admin')" id="admin-link" style="display: none;"><i class="fas fa-cog"></i> Админ панель</a>
+                    <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Выход</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Landing Page -->
+        <section id="home-section" class="section active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="container">
+                    <h1>Найдите свою идеальную пару с LinkYou</h1>
+                    <p>Тысячи людей уже нашли свою любовь. Присоединяйтесь к нам!</p>
+                    <button class="btn btn-large btn-primary" onclick="showRegister()">Зарегистрироваться бесплатно</button>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="how-it-works section-block">
+                <div class="container">
+                    <h2>Как это работает</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <h3>1. Создайте анкету</h3>
+                            <p>Заполните профиль, добавьте фото и расскажите о себе</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>2. Найдите匹配</h3>
+                            <p>Используйте фильтры для поиска подходящих людей</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h3>3. Начните общение</h3>
+                            <p>Обменяйтесь лайками и начните приятное общение</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-ring"></i>
+                            </div>
+                            <h3>4. Встретьтесь</h3>
+                            <p>Организуйте встречу и найдите свою любовь</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us -->
+            <div class="why-choose-us section-block">
+                <div class="container">
+                    <h2>Почему выбирают нас</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Безопасность</h4>
+                            <p>Проверенные анкеты и защита данных</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Большая аудитория</h4>
+                            <p>Тысячи реальных пользователей</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-magic"></i>
+                            <h4>Умный подбор</h4>
+                            <p>Алгоритмы для точных匹配</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Удобство</h4>
+                            <p>Работает на всех устройствах</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section section-block">
+                <div class="container">
+                    <h2>Готовы начать?</h2>
+                    <p>Присоединяйтесь к LinkYou прямо сейчас и найдите свою любовь!</p>
+                    <button class="btn btn-large btn-primary" onclick="showRegister()">Создать аккаунт</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Section -->
+        <section id="login-section" class="section auth-section">
+            <div class="auth-container">
+                <div class="auth-box">
+                    <h2>Вход в LinkYou</h2>
+                    <form id="login-form" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Войти</button>
+                    </form>
+                    <div class="social-login">
+                        <p>Или войдите через</p>
+                        <div class="social-buttons">
+                            <button class="btn-social btn-telegram" onclick="telegramLogin()">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </button>
+                            <button class="btn-social btn-vk" onclick="vkLogin()">
+                                <i class="fab fa-vk"></i> ВКонтакте
+                            </button>
+                            <button class="btn-social btn-google" onclick="googleLogin()">
+                                <i class="fab fa-google"></i> Gmail
+                            </button>
+                        </div>
+                    </div>
+                    <p class="auth-switch">Нет аккаунта? <a href="#" onclick="showRegister()">Зарегистрироваться</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Register Section -->
+        <section id="register-section" class="section auth-section">
+            <div class="auth-container">
+                <div class="auth-box">
+                    <h2>Регистрация в LinkYou</h2>
+                    <form id="register-form" onsubmit="handleRegister(event)">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="password" id="register-password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input type="text" id="register-firstname" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Фамилия</label>
+                            <input type="text" id="register-lastname">
+                        </div>
+                        <div class="form-group">
+                            <label>Пол</label>
+                            <select id="register-gender" required>
+                                <option value="">Выберите пол</option>
+                                <option value="male">Мужской</option>
+                                <option value="female">Женский</option>
+                                <option value="other">Другой</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Дата рождения</label>
+                            <input type="date" id="register-birthdate" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Зарегистрироваться</button>
+                    </form>
+                    <div class="social-login">
+                        <p>Или зарегистрируйтесь через</p>
+                        <div class="social-buttons">
+                            <button class="btn-social btn-telegram" onclick="telegramLogin()">
+                                <i class="fab fa-telegram"></i> Telegram
+                            </button>
+                            <button class="btn-social btn-vk" onclick="vkLogin()">
+                                <i class="fab fa-vk"></i> ВКонтакте
+                            </button>
+                            <button class="btn-social btn-google" onclick="googleLogin()">
+                                <i class="fab fa-google"></i> Gmail
+                            </button>
+                        </div>
+                    </div>
+                    <p class="auth-switch">Уже есть аккаунт? <a href="#" onclick="showLogin()">Войти</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile-section" class="section">
+            <div class="container">
+                <h2>Моя анкета</h2>
+                <div class="profile-container">
+                    <div class="profile-photo-section">
+                        <div class="profile-photo-preview">
+                            <img id="profile-avatar-preview" src="/images/default-avatar.png" alt="Avatar">
+                        </div>
+                        <form id="photo-upload-form" onsubmit="handlePhotoUpload(event)">
+                            <input type="file" id="profile-photo-input" accept="image/*" required>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="photo-is-primary"> Сделать основным фото
+                            </label>
+                            <button type="submit" class="btn btn-secondary">Загрузить фото</button>
+                        </form>
+                    </div>
+                    <form id="profile-form" class="profile-form" onsubmit="handleProfileUpdate(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Имя</label>
+                                <input type="text" id="profile-firstname" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Фамилия</label>
+                                <input type="text" id="profile-lastname">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Пол</label>
+                                <select id="profile-gender" required>
+                                    <option value="male">Мужской</option>
+                                    <option value="female">Женский</option>
+                                    <option value="other">Другой</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Дата рождения</label>
+                                <input type="date" id="profile-birthdate" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Рост (см)</label>
+                                <input type="number" id="profile-height" min="100" max="250">
+                            </div>
+                            <div class="form-group">
+                                <label>Вес (кг)</label>
+                                <input type="number" id="profile-weight" min="30" max="300">
+                            </div>
+                            <div class="form-group">
+                                <label>Тип телосложения</label>
+                                <select id="profile-bodytype">
+                                    <option value="">Не указано</option>
+                                    <option value="slim">Худощавое</option>
+                                    <option value="average">Среднее</option>
+                                    <option value="athletic">Спортивное</option>
+                                    <option value="curvy">Пышное</option>
+                                    <option value="plus_size">Крупное</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Город</label>
+                                <input type="text" id="profile-city">
+                            </div>
+                            <div class="form-group">
+                                <label>Страна</label>
+                                <input type="text" id="profile-country">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>О себе</label>
+                            <textarea id="profile-aboutme" rows="4" placeholder="Расскажите немного о себе..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Кого ищу (пол)</label>
+                                <select id="profile-lookingfor-gender">
+                                    <option value="male">Мужчину</option>
+                                    <option value="female">Женщину</option>
+                                    <option value="both">Всех</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Возраст от</label>
+                                <input type="number" id="profile-lookingfor-age-min" min="18" max="99" value="18">
+                            </div>
+                            <div class="form-group">
+                                <label>Возраст до</label>
+                                <input type="number" id="profile-lookingfor-age-max" min="18" max="99" value="99">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section id="search-section" class="section">
+            <div class="container">
+                <h2>Поиск анкет</h2>
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label>Пол</label>
+                        <select id="search-gender">
+                            <option value="">Все</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Ищу</label>
+                        <select id="search-lookingfor">
+                            <option value="">Все</option>
+                            <option value="male">Мужчину</option>
+                            <option value="female">Женщину</option>
+                            <option value="both">Всех</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Возраст от</label>
+                        <input type="number" id="search-age-min" min="18" max="99" value="18">
+                    </div>
+                    <div class="filter-group">
+                        <label>Возраст до</label>
+                        <input type="number" id="search-age-max" min="18" max="99" value="99">
+                    </div>
+                    <div class="filter-group">
+                        <label>Тип телосложения</label>
+                        <select id="search-bodytype">
+                            <option value="">Все</option>
+                            <option value="slim">Худощавое</option>
+                            <option value="average">Среднее</option>
+                            <option value="athletic">Спортивное</option>
+                            <option value="curvy">Пышное</option>
+                            <option value="plus_size">Крупное</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Город</label>
+                        <input type="text" id="search-location" placeholder="Москва">
+                    </div>
+                    <button class="btn btn-primary" onclick="searchUsers()">Найти</button>
+                </div>
+                <div id="search-results" class="profiles-grid">
+                    <!-- Profiles will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Section -->
+        <section id="chat-section" class="section">
+            <div class="container">
+                <h2>Сообщения</h2>
+                <div class="chat-container">
+                    <div class="conversations-list" id="conversations-list">
+                        <!-- Conversations will be loaded here -->
+                    </div>
+                    <div class="chat-window" id="chat-window" style="display: none;">
+                        <div class="chat-header">
+                            <div class="chat-user-info">
+                                <img id="chat-user-avatar" src="" alt="">
+                                <span id="chat-user-name"></span>
+                            </div>
+                            <button class="btn-close" onclick="closeChat()">×</button>
+                        </div>
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Messages will be loaded here -->
+                        </div>
+                        <form class="chat-input-form" onsubmit="sendMessage(event)">
+                            <input type="text" id="message-input" placeholder="Введите сообщение..." required>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="admin-section" class="section">
+            <div class="container">
+                <h2>Админ панель</h2>
+                <div class="admin-dashboard">
+                    <div class="admin-stats" id="admin-stats">
+                        <!-- Stats will be loaded here -->
+                    </div>
+                    <div class="admin-users" id="admin-users">
+                        <h3>Пользователи</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Имя</th>
+                                    <th>Email</th>
+                                    <th>Статус</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-users-table">
+                                <!-- Users will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>LinkYou</h4>
+                    <p>Найди свою любовь с LinkYou</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Информация</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Правила</a></li>
+                        <li><a href="#">Конфиденциальность</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Помощь</h4>
+                    <ul>
+                        <li><a href="#">Поддержка</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Мы в соцсетях</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LinkYou. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- Telegram Login Widget Script -->
+    <script async src="https://telegram.org/js/telegram-widget.js?22"></script>
+</body>
+</html>
