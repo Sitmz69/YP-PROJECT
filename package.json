@@ -18,7 +18,7 @@
     "mysql2": "^3.11.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-vkontakte": "^0.5.4",
+    "passport-vkontakte": "^0.5.0",
     "passport-telegram-official": "^1.0.13"
   }
 }
