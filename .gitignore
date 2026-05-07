@@ -2,53 +2,36 @@
 # Dependencies
 node_modules/
 
-# Environment variables
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment
 .env
 .env.local
 *.env.*
 
-# Logs
-*.log
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Build outputs
-dist/
-build/
-target/
-
-# Python cache
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# IDE
+# Editors
 .vscode/
 .idea/
 
-# Temporary files
-*.tmp
-*.temp
-*.swp
-*.swo
-
-# Coverage reports
+# Build artifacts
+dist/
+build/
 coverage/
 htmlcov/
+*.pyc
+__pycache__/
+*.class
+*.o
+*.obj
+*.out
+*.dll
+*.so
+*.a
+*.exe
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Package lock files
-package-lock.json
-yarn.lock
-
-# Compressed files
+# Compression files
 *.zip
 *.gz
 *.tar
@@ -72,4 +55,21 @@ yarn.lock
 *.tar.xz
 *.tar.zst
 
+# Python specific
+*.pyc
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+*.pyo
+*.pyd
+
+# Node specific
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
 ```

@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const VKontakteStrategy = require('passport-vkontakte').Strategy;
 const router = express.Router();
 const database = require('../config/database.js');
 require('dotenv').config();
